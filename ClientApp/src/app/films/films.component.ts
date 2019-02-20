@@ -7,8 +7,11 @@ import { FilmsService } from './films.service';
   styleUrls: ['./films.component.css'],
   providers: [FilmsService]
 })
+
 export class FilmsComponent implements OnInit {
   selectedFilms;
+  MAX_FILMS = 8;
+  
   constructor(private filmsService: FilmsService) { }
   ngOnInit() {
     this.getFilms();
@@ -26,4 +29,12 @@ export class FilmsComponent implements OnInit {
     return this.selectedFilms.filter(film => film.selected).length;
   }
 
+  canFilmBeSelected(film) {
+    return (film.selected || this.getSelectedFilmsCount() < this.MAX_FILMS)
+  }
+
+  updateFilmSelected(film) {
+    if(this.canFilmBeSelected(film))
+      film.selected = !film.selected
+  }
 }

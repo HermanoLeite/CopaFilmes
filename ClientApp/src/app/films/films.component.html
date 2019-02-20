@@ -3,16 +3,16 @@
   <h2>Filmes</h2>
 </div>
 <div class="row">
-  <p>Filmes selecionados: {{getSelectedFilmsCount()}} de 8</p>
+  <p>Filmes selecionados: {{getSelectedFilmsCount()}} de {{MAX_FILMS}}</p>
 </div>
 <div class="row">
   <div class="col-xl-3 col-md-3 col-sm-6 col-12 film-card-deck" *ngFor="let film of selectedFilms">
-    <div class="card pointer" [ngClass]="{'border-info': film.selected}" (click)="film.selected = !film.selected">
+    <div class="card" [ngClass]="{'border-info': film.selected, 'pointer': canFilmBeSelected(film), 'not-allowed': !canFilmBeSelected(film)}" (click)="updateFilmSelected(film)">
       <div class="card-body film-card" >
         <div class="custom-control custom-checkbox mr-sm-2">
-          <input type="checkbox" class="custom-control-input"  [checked]="film.selected" (change)="film.selected = !film.selected" >
-          <label class="custom-control-label film-checkbox pointer">
-          </label>
+          <input type="checkbox" class="custom-control-input" [checked]="film.selected">
+          <label class="custom-control-label film-checkbox" [ngClass]="{'pointer': canFilmBeSelected(film), 'not-allowed': !canFilmBeSelected(film)}"></label>
+          
           <h6 class="card-title film-title">{{film.titulo}}</h6>
           <p class="card-subtitle mb-2 text-muted film-year">{{film.ano}}</p>
         </div>
