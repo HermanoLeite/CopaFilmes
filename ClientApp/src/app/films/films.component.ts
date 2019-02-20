@@ -8,19 +8,22 @@ import { FilmsService } from './films.service';
   providers: [FilmsService]
 })
 export class FilmsComponent implements OnInit {
-  films;
+  selectedFilms;
   constructor(private filmsService: FilmsService) { }
   ngOnInit() {
-    this.filmsService.getFilms().then((value) => {
-      this.films = value;
-      console.log('value ' + JSON.stringify(value)); // "Success"
+    this.getFilms();
+  }
+
+  getFilms() {
+    this.filmsService.getFilms().then((value: [{}]) => {
+      this.selectedFilms = value.map(film => { return { ...film, selected: false };})
     }).catch((err) => {
       console.log('Erro: ' + JSON.stringify(err)); // "Success"
     });
   }
 
-  getFilms() {
-
+  getSelectedFilmsCount() {
+    return this.selectedFilms.filter(film => film.selected).length;
   }
 
 }

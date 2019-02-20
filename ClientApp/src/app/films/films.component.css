@@ -1,0 +1,28 @@
+.film-card-deck {
+    padding-right: 5px;
+    padding-left: 5px;
+    padding-bottom: 10px;
+}
+
+.film-card {
+    padding: 0px 10px 10px 10px;
+    line-height: 1;
+}
+
+.film-title {
+    font-size: 11px;
+}
+
+.film-year {
+    font-size: 10px;
+}
+
+.film-checkbox::before {
+    width: .8rem;
+    height: .8rem;
+    top: 0.55rem;
+}
+.film-checkbox::after {
+    left: -1.6rem;
+    height: 1.3rem;
+}

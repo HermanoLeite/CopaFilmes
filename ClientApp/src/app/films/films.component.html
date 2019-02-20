@@ -3,11 +3,19 @@
   <h2>Filmes</h2>
 </div>
 <div class="row">
-  <div class="col-xl-3 col-md-3 col-sm-6 col-12" *ngFor="let film of films">
+  <p>Filmes selecionados: {{getSelectedFilmsCount()}} de 8</p>
+</div>
+<div class="row">
+  <div class="col-xl-3 col-md-3 col-sm-6 col-12 film-card-deck" *ngFor="let film of selectedFilms">
     <div class="card">
-      <div class="card-body">
-        <h6 class="card-title">{{film.titulo}}</h6>
-        <p class="card-subtitle mb-2 text-muted">{{film.ano}}</p>
+      <div class="card-body film-card">
+        <div class="custom-control custom-checkbox mr-sm-2">
+          <input type="checkbox" class="custom-control-input" id="{{film.id}}" (change)="film.selected = !film.selected" >
+          <label class="custom-control-label film-checkbox" for="{{film.id}}">
+          </label>
+          <h6 class="card-title film-title">{{film.titulo}}</h6>
+          <p class="card-subtitle mb-2 text-muted film-year">{{film.ano}}</p>
+        </div>
       </div>
     </div>
   </div>
