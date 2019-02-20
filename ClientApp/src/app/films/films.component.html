@@ -7,11 +7,11 @@
 </div>
 <div class="row">
   <div class="col-xl-3 col-md-3 col-sm-6 col-12 film-card-deck" *ngFor="let film of selectedFilms">
-    <div class="card">
-      <div class="card-body film-card">
+    <div class="card pointer" [ngClass]="{'border-info': film.selected}" (click)="film.selected = !film.selected">
+      <div class="card-body film-card" >
         <div class="custom-control custom-checkbox mr-sm-2">
-          <input type="checkbox" class="custom-control-input" id="{{film.id}}" (change)="film.selected = !film.selected" >
-          <label class="custom-control-label film-checkbox" for="{{film.id}}">
+          <input type="checkbox" class="custom-control-input"  [checked]="film.selected" (change)="film.selected = !film.selected" >
+          <label class="custom-control-label film-checkbox pointer">
           </label>
           <h6 class="card-title film-title">{{film.titulo}}</h6>
           <p class="card-subtitle mb-2 text-muted film-year">{{film.ano}}</p>
