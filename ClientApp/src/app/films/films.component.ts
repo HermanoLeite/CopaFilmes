@@ -42,6 +42,7 @@ export class FilmsComponent implements OnInit {
   }
 
   startChampionship() {
-    this.filmsService.startChampionship(this.selectedFilms.filter(film => film.selected));
+    if (this.getSelectedFilmsCount() == this.MAX_FILMS)
+      this.filmsService.startChampionship(this.selectedFilms.filter(film => film.selected));
   }
 }
