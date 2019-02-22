@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FilmsService } from './films.service';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-films',
@@ -12,9 +13,10 @@ export class FilmsComponent implements OnInit {
   selectedFilms;
   MAX_FILMS = 8;
   
-  constructor(private filmsService: FilmsService) { }
+  constructor(private filmsService: FilmsService) {
+    this.getFilms(); 
+  }
   ngOnInit() {
-    this.getFilms();
   }
 
   getFilms() {
@@ -26,7 +28,8 @@ export class FilmsComponent implements OnInit {
   }
 
   getSelectedFilmsCount() {
-    return this.selectedFilms.filter(film => film.selected).length;
+    if (this.selectedFilms)
+      return this.selectedFilms.filter(film => film.selected).length;
   }
 
   canFilmBeSelected(film) {
@@ -36,5 +39,9 @@ export class FilmsComponent implements OnInit {
   updateFilmSelected(film) {
     if(this.canFilmBeSelected(film))
       film.selected = !film.selected
+  }
+
+  startChampionship() {
+    this.filmsService.startChampionship(this.selectedFilms.filter(film => film.selected));
   }
 }

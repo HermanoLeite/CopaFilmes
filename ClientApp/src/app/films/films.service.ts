@@ -1,9 +1,16 @@
-import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { Injectable, Inject } from '@angular/core';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+
+const httpOptions = {
+  headers: new HttpHeaders({
+    'Content-Type':  'application/json',
+    'Authorization': 'my-auth-token'
+  })
+};
 
 @Injectable()
 export class FilmsService{
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, @Inject('BASE_URL') private baseUrl: string) {
   }
   
   getFilms() {
@@ -22,5 +29,11 @@ export class FilmsService{
         );
     });
     return promise;
+  }
+
+  startChampionship(selectedFilms) {
+    this.http.post<any>(this.baseUrl + 'api/WorldCup/startChampionship', selectedFilms).subscribe(result => {
+      console.log(JSON.stringify(result))
+    }, error => console.error(error));
   }
 }

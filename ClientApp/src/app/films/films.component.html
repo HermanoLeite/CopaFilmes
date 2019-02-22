@@ -6,6 +6,9 @@
   <p>Filmes selecionados: {{getSelectedFilmsCount()}} de {{MAX_FILMS}}</p>
 </div>
 <div class="row">
+  <button (click)="startChampionship()">Começar</button>
+</div>
+<div class="row">
   <div class="col-xl-3 col-md-3 col-sm-6 col-12 film-card-deck" *ngFor="let film of selectedFilms">
     <div class="card" [ngClass]="{'border-info': film.selected, 'pointer': canFilmBeSelected(film), 'not-allowed': !canFilmBeSelected(film)}" (click)="updateFilmSelected(film)">
       <div class="card-body film-card" >
