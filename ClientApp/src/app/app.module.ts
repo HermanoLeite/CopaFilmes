@@ -5,11 +5,15 @@ import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 import { AppComponent } from './app.component';
 import { FilmsComponent } from './films/films.component';
+import { ResultComponent } from './result/result.component';
+import { HeaderComponent } from './header/header.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    FilmsComponent
+    HeaderComponent,
+    FilmsComponent,
+    ResultComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -17,6 +21,7 @@ import { FilmsComponent } from './films/films.component';
     FormsModule,
     RouterModule.forRoot([
       { path: '', component: FilmsComponent, pathMatch: 'full' },
+      { path: 'result', component: ResultComponent },
     ])
   ],
   providers: [],

@@ -1,20 +1,14 @@
-<div class="jumbotron jumbotron-fluid filmeJumbotron mt-4">
-  <div class="row justify-content-center">
-    <div class="col-8 text-center text-white">
-      <p class="text-campeonato">CAMPEONATO DE FILMES</p>
-      <h1>Fase de Seleção</h1>
-      <hr class="col-1">
-      <p>Selecione 8 filmes que você deseja que entrem na competição e depois pressione o botão Gerar Meu Campeonato para prosseguir.</p>
-    </div>
-  </div>
-</div>
+<app-header>
+  <h1 header>Fase de Seleção</h1>
+  <p body>Selecione 8 filmes que você deseja que entrem na competição e depois pressione o botão Gerar Meu Campeonato para prosseguir.</p>
+</app-header>
 <div *ngIf="selectedFilms">
   <div class="row mb-4">
     <div class="col align-self-start text-white">
       <h6 class="align-middle">Selecionados<br> {{getSelectedFilmsCount()}} de {{MAX_FILMS}} filmes</h6>
     </div>
     <div class="col align-self-end">
-      <button type="button" class="btn btn-dark botaoIniciar" [disabled]="getSelectedFilmsCount() != 8">GERAR MEU CAMPEONATO</button>
+      <button type="button" class="btn btn-dark botaoIniciar" (click)="startChampionship()" [disabled]="getSelectedFilmsCount() != 8">GERAR MEU CAMPEONATO</button>
     </div>
   </div>
   <div class="row">

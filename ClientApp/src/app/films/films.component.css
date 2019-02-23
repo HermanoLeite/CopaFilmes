@@ -24,7 +24,7 @@
 }
 .film-checkbox::after {
     left: -1.6rem;
-    height: 1.3rem;
+    height: 3.4rem;
 }
 
 .pointer {
@@ -37,16 +37,4 @@
 
 .botaoIniciar {
     float: right;
-}
-
-.filmeJumbotron {
-    background-color: rgb(110,110,110);
-}
-
-hr {
-    border-color: inherit;
-}
-
-.text-campeonato {
-    color: rgb(168,168,168);
 }

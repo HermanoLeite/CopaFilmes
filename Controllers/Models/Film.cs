@@ -1,6 +1,6 @@
 namespace prova_lambda_angular.Controllers.Models
 {
-    public class Filme
+    public class Film
     {
         public string titulo { get; set; }
         public int ano { get; set; }

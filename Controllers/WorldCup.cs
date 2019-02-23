@@ -11,41 +11,33 @@ namespace prova_lambda_angular.Controllers
     public class WorldCup : Controller
     {
         [HttpPost("[action]")]
-        public Resultado startChampionship([FromBody] List<Filme> filmes)
+        public Result startChampionship([FromBody] List<Film> films)
         {
-            var filmesOrdenadosPorDisputa = ordenaFilmePorDisputa(filmes.OrderBy(f => f.titulo).ToList());
             // try catch
-            return campeonato(filmesOrdenadosPorDisputa);
+            return championship(films.OrderBy(f => f.titulo).ToList());
         }
 
-        public List<Filme> ordenaFilmePorDisputa(List<Filme> filmes) {
-            var tamanho = filmes.Count;
-            List<Filme> filmesOrdenadosPorDisputa = new List<Filme>();
-            for (var i = 0; i < tamanho/2; i++) {
-                filmesOrdenadosPorDisputa.Add(filmes[i]);
-                filmesOrdenadosPorDisputa.Add(filmes[tamanho-1-i]);
+        public Result championship(List<Film> films) {
+            while (films.Count > 2) {
+                var tamanho = films.Count;
+                List<Film> filmsOrderedByGame = new List<Film>();
+                for (var i = 0; i < tamanho/2; i++) {
+                    filmsOrderedByGame.Add(game(films[i], films[tamanho-1-i]).winner);
+                }
+                films = filmsOrderedByGame;
             }
-            return filmesOrdenadosPorDisputa;
+            return game(films.First(), films.Last());
         }
 
-        public Resultado campeonato(List<Filme> filmes) {
-            if(filmes.Count == 2) {
-                return disputa(filmes[0], filmes[1]);
-            }
-            var primeiroGrupo = campeonato(filmes.Take(filmes.Count/2).ToList());
-            var segundoGrupo = campeonato(filmes.Skip(filmes.Count/2).ToList());
-            return disputa(primeiroGrupo.vencedor, segundoGrupo.vencedor);
-        }
+        public Result game(Film film1, Film film2) {
+            if(film1.nota > film2.nota)
+                return new Result(film1, film2);
+            if(film1.nota < film2.nota)
+                return new Result(film2, film1);
+            if(string.Compare(film1.titulo, film2.titulo) < 0)
+                return new Result(film1, film2);
 
-        public Resultado disputa (Filme filme1, Filme filme2) {
-            if(filme1.nota > filme2.nota)
-                return new Resultado(filme1, filme2);
-            if(filme1.nota < filme2.nota)
-                return new Resultado(filme2, filme1);
-            if(string.Compare(filme1.titulo, filme2.titulo) < 0)
-                return new Resultado(filme1, filme2);
-
-            return new Resultado(filme2, filme1);
+            return new Result(film2, film1);
         } 
     }
 }
