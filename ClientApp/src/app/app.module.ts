@@ -21,6 +21,7 @@ import { HeaderComponent } from './header/header.component';
     FormsModule,
     RouterModule.forRoot([
       { path: '', component: FilmsComponent, pathMatch: 'full' },
+      { path: 'films', component: FilmsComponent },
       { path: 'result', component: ResultComponent },
     ])
   ],

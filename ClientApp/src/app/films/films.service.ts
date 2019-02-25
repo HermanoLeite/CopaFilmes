@@ -1,6 +1,6 @@
 import { Injectable, Inject } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import {Router, NavigationExtras} from "@angular/router";
+import { Router } from "@angular/router";
 
 const httpOptions = {
   headers: new HttpHeaders({
@@ -35,13 +35,12 @@ export class FilmsService{
   startChampionship(selectedFilms) {
     this.http.post<any>(this.baseUrl + 'api/WorldCup/startChampionship', selectedFilms).subscribe(result => {
       console.log(JSON.stringify(result))
-      let navigationExtras: NavigationExtras = {
-          queryParams: {
-            winner: result.winner.titulo,
-            looser: result.looser.titulo,
-          }
-      };
-      this.router.navigate(["result"], navigationExtras);
+      const championshipResult = {
+        firstPlace: result.winner.titulo,
+        secondPlace: result.looser.titulo,
+      }
+      localStorage.setItem('dataSource', JSON.stringify(championshipResult));
+      this.router.navigate(["result"]);
     }, error => console.error(error));
   }
 }

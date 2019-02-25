@@ -2,27 +2,37 @@
   <h1 header>Resultado Final</h1>
   <p body>Veja o resultado final do Campeonato de filmes de forma simples e rápida.</p>
 </app-header>
-<div class="card mb-3">
-  <div class="row no-gutters">
-    <div class="col-md-1 text-white vertical-align card-number">
-      <h1>1º</h1>
+<div *ngIf="championshipResult">
+  <div class="card mb-3">
+    <div class="row no-gutters">
+      <div class="col-md-1 text-white vertical-align card-number">
+        <h1>1º</h1>
+      </div>
+      <div class="col-md-11">
+        <div class="card-body">
+          <h5 class="mb-0" *ngIf="!championshipResult.firstPlace">Ocorreu algum erro na primeira colocação :(</h5>
+          <h5 class="mb-0" *ngIf="championshipResult.firstPlace">{{championshipResult.firstPlace}}</h5>
+        </div>
+      </div>
     </div>
-    <div class="col-md-11">
-      <div class="card-body">
-        <h5 class="mb-0">{{winner}}</h5>
+  </div>
+  <div class="card">
+    <div class="row no-gutters">
+      <div class="col-md-1 text-white vertical-align card-number">
+        <h1 class="mb-0">2º</h1>
+      </div>
+      <div class="col-md-11">
+        <div class="card-body">
+          <h5 class="mb-0" *ngIf="!championshipResult.secondPlace">Ocorreu algum erro na segunda colocação :(</h5>
+          <h5 class="mb-0" *ngIf="championshipResult.secondPlace">{{championshipResult.secondPlace}}</h5>
+        </div>
       </div>
     </div>
   </div>
 </div>
-<div class="card">
-  <div class="row no-gutters">
-    <div class="col-md-1 text-white vertical-align card-number">
-      <h1 class="mb-0">2º</h1>
-    </div>
-    <div class="col-md-11">
-      <div class="card-body">
-        <h5 class="mb-0">{{looser}}</h5>
-      </div>
-    </div>
+<div class="row">
+  <div class="col mt-5">
+      <button type="button" class="btn btn-dark botaoIniciar" (click)="newChampionship()">GERAR NOVO CAMPEONATO</button>
   </div>
 </div>
+
