@@ -7,7 +7,7 @@
             "type": "process",
             "args": [
                 "build",
-                "${workspaceFolder}/prova-lambda-angular.csproj"
+                "${workspaceFolder}/copa-filmes.csproj"
             ],
             "problemMatcher": "$msCompile"
         }

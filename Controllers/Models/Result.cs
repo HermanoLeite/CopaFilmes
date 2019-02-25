@@ -1,4 +1,4 @@
-namespace prova_lambda_angular.Controllers.Models
+namespace copa_filmes.Controllers.Models
 {
     public class Result
     {

@@ -1,11 +1,11 @@
 {
-  "name": "prova_lambda_angular",
+  "name": "copa_filmes",
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
-    "build:ssr": "ng run prova_lambda_angular:server:dev",
+    "build:ssr": "ng run copa_filmes:server:dev",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"

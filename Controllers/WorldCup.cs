@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using prova_lambda_angular.Controllers.Models;
+using copa_filmes.Controllers.Models;
 
-namespace prova_lambda_angular.Controllers
+namespace copa_filmes.Controllers
 {
     [Route("api/[controller]")]
     public class WorldCup : Controller
