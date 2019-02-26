@@ -8,7 +8,7 @@ import { Result } from "../models/result.model";
   selector: 'app-films',
   templateUrl: './films.component.html',
   styleUrls: ['./films.component.css'],
-  providers: [FilmsService]
+  providers: [ FilmsService ]
 })
 
 export class FilmsComponent {
@@ -27,7 +27,7 @@ export class FilmsComponent {
         this.selectedFilms = value.map(film => { return { ...film, selected: false };})
       })
       .catch((err) => {
-        console.log('Erro: ' + err);
+        console.log('Error: ' + JSON.stringify(err));
         this.error = true;
       });
   }
@@ -58,7 +58,7 @@ export class FilmsComponent {
           this.showResultPage(result);
         })
         .catch((err) => {
-          console.log('Erro: ' + err);
+          console.log('Error: ' + JSON.stringify(err));
           this.error = true;
         });
     }
