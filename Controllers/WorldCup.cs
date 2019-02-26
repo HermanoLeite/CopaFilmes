@@ -11,10 +11,14 @@ namespace copa_filmes.Controllers
     public class WorldCup : Controller
     {
         [HttpPost("[action]")]
-        public Result startChampionship([FromBody] List<Film> films)
+        public IActionResult  startChampionship([FromBody] List<Film> films)
         {
-            // try catch
-            return championship(films.OrderBy(f => f.titulo).ToList());
+            try {
+                return Ok(championship(films.OrderBy(f => f.titulo).ToList()));
+            }
+            catch (Exception) {
+                return StatusCode(500, "Ocorreu um erro na competição");
+            }
         }
 
         public Result championship(List<Film> films) {
